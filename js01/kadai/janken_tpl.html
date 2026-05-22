@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>スロットゲーム</title>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-area">
+
+    <h1 id="title">スロットゲーム</h1>
+
+    <button id="urawaza">★</button>
+
+  </div>
+
+</header>
+
+<main>
+
+  <!-- お祝いエフェクト -->
+  <div id="effect">
+
+    <div id="effect-text">
+      🎉 777 JACKPOT !! 🎉
+    </div>
+
+  </div>
+
+  <!-- スロット -->
+  <ul>
+    <li id="slot1">
+      <img src="./img/kaiten.png" class="moving">
+    </li>
+
+    <li id="slot2">
+      <img src="./img/kaiten.png" class="moving">
+    </li>
+
+    <li id="slot3">
+      <img src="./img/kaiten.png" class="moving">
+    </li>
+  </ul>
+
+  <!-- ボタン -->
+  <ul>
+
+    <li id="button1">
+      <img src="./img/button.png">
+    </li>
+
+    <li id="button2">
+      <img src="./img/button.png">
+    </li>
+
+    <li id="button3">
+      <img src="./img/button.png">
+    </li>
+
+  </ul>
+
+  <div id="judgment"></div>
+
+</main>
+
+<footer></footer>
+
+<script>
+
+// ====================
+// タイトル切り替え
+// ====================
+
+const messages = [
+  "★スロットゲーム★",
+  "ボタンを一つずつ押して",
+  "ゾロ目を3つ揃えましょう！"
+];
+
+let index = 0;
+
+$("#title").html(messages[index]);
+
+setInterval(function(){
+
+  index++;
+
+  if(index >= messages.length){
+    index = 0;
+  }
+
+  $("#title").html(messages[index]);
+
+},2000);
+
+
+// ====================
+// 結果保存
+// ====================
+
+let result1 = 0;
+let result2 = 0;
+let result3 = 0;
+
+
+// ====================
+// 裏技モード
+// ====================
+
+let urawazaMode = false;
+
+
+// ====================
+// 裏技ボタン
+// ====================
+
+$("#urawaza").on("click",function(){
+
+  urawazaMode = true;
+
+  $("#judgment").html("★ラッキーモード発動★");
+
+  $(this).css({
+    "color":"gold",
+    "transform":"scale(1.3)"
+  });
+
+});
+
+
+// ====================
+// 数字画像表示関数
+// ====================
+
+function showSlot(slotId , number){
+
+  if(number == 1){
+    $(slotId).html('<img src="./img/one.png">');
+  }
+
+  if(number == 2){
+    $(slotId).html('<img src="./img/two.png">');
+  }
+
+  if(number == 3){
+    $(slotId).html('<img src="./img/three.png">');
+  }
+
+  if(number == 4){
+    $(slotId).html('<img src="./img/four.png">');
+  }
+
+  if(number == 5){
+    $(slotId).html('<img src="./img/five.png">');
+  }
+
+  if(number == 6){
+    $(slotId).html('<img src="./img/six.png">');
+  }
+
+  if(number == 7){
+    $(slotId).html('<img src="./img/seven.png">');
+  }
+
+}
+
+
+// ====================
+// ボタン1
+// ====================
+
+$("#button1").on("click",function(){
+
+  let r;
+
+  if(urawazaMode == true){
+    r = 7;
+  }else{
+    r = Math.ceil(Math.random()*7);
+  }
+
+  result1 = r;
+
+  showSlot("#slot1",r);
+
+  $(this).off("click");
+
+  $(this).css("opacity","0.5");
+
+});
+
+
+// ====================
+// ボタン2
+// ====================
+
+$("#button2").on("click",function(){
+
+  let r;
+
+  if(urawazaMode == true){
+    r = 7;
+  }else{
+    r = Math.ceil(Math.random()*7);
+  }
+
+  result2 = r;
+
+  showSlot("#slot2",r);
+
+  $(this).off("click");
+
+  $(this).css("opacity","0.5");
+
+});
+
+
+// ====================
+// ボタン3
+// ====================
+
+$("#button3").on("click",function(){
+
+  let r;
+
+  if(urawazaMode == true){
+    r = 7;
+  }else{
+    r = Math.ceil(Math.random()*7);
+  }
+
+  result3 = r;
+
+  showSlot("#slot3",r);
+
+  $(this).off("click");
+
+  $(this).css("opacity","0.5");
+
+
+  // ====================
+  // 判定
+  // ====================
+
+  if(result1 == result2 && result2 == result3){
+
+    $("#judgment").html("🎉 JACKPOT !! 🎉");
+
+    // エフェクト表示
+    $("#effect").fadeIn(300);
+
+    // 5秒後に消える
+    setTimeout(function(){
+
+      $("#effect").fadeOut(500);
+
+    },5000);
+
+  }else{
+
+    $("#judgment").html("残念！");
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

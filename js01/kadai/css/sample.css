@@ -1,0 +1,224 @@
+body{
+    width: 1200px;
+    margin:0 auto;
+    padding:0;
+    text-align:center;
+    font-size: 24px;
+    color: dimgray;
+    background-image: url(/js01/kadai/img/haikei2.png);
+}
+
+header{
+    background-color: rgb(248, 245, 245);
+    text-align: center;
+    background-image: url(/js01/kadai/img/haikei2.png);
+}
+
+.header-area{
+
+    width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+}
+
+#title{
+
+    margin: 0;
+
+    padding: 20px 0;
+}
+
+#urawaza{
+
+    position: absolute;
+
+    right: 0;
+
+    padding: 10px 20px;
+
+    font-size: 28px;
+
+    border: none;
+
+    background: white;
+
+    color: dimgray;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+main{
+    background-image: url(/js01/kadai/img/haikei2.png);
+}
+
+footer{
+    background-color: rgb(248, 245, 245);
+    text-align: center;
+    background-image: url(/js01/kadai/img/haikei2.png);
+}
+
+#slot1 img,
+#slot2 img,
+#slot3 img{
+
+    width: 400px;
+    height: 400px;
+}
+
+#button1 img,
+#button2 img,
+#button3 img{
+
+    width: 400px;
+}
+
+#judgment{
+
+    font-size: 60px;
+
+    font-weight: bold;
+
+    color: crimson;
+
+    margin-top: 30px;
+
+    height: 100px;
+}
+
+ul{
+
+    padding: 0;
+
+    display: table;
+
+    table-layout: fixed;
+
+    width:100%;
+}
+
+li{
+
+    text-align: center;
+
+    list-style-type:none;
+
+    border: 1px solid rgb(248, 245, 245);
+
+    background-color: rgb(248, 245, 245);
+
+    display:table-cell;
+
+    cursor: pointer;
+
+    height: 300px;
+}
+
+
+/* スロット振動 */
+
+@keyframes slotMove{
+
+    from{
+        transform: translateY(0px);
+    }
+
+    to{
+        transform: translateY(2px);
+    }
+
+}
+
+.moving{
+
+    animation: slotMove 0.15s infinite alternate;
+}
+
+
+
+/* ====================
+   お祝いエフェクト
+==================== */
+
+#effect{
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(255,0,100,0.7);
+
+    display: none;
+
+    z-index: 9999;
+
+    animation: flash 0.2s infinite alternate;
+}
+
+
+#effect-text{
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+
+    font-size: 120px;
+
+    font-weight: bold;
+
+    color: gold;
+
+    text-shadow:
+      0 0 10px white,
+      0 0 20px yellow,
+      0 0 40px orange,
+      0 0 80px red;
+
+    animation: zoom 0.4s infinite alternate;
+}
+
+
+/* 背景点滅 */
+
+@keyframes flash{
+
+    from{
+        background: rgba(255,0,100,0.7);
+    }
+
+    to{
+        background: rgba(255,255,0,0.7);
+    }
+
+}
+
+
+/* 拡大縮小 */
+
+@keyframes zoom{
+
+    from{
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+    to{
+        transform: translate(-50%,-50%) scale(1.3);
+    }
+
+}
